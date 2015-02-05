@@ -1,4 +1,7 @@
 <?php
+ session_start();
+ $_SESSION["username"]="Usuario";
+
  $contenidoSesion="";
  function agregarAession($data){
     return "AS Contenido:" . $data; 
@@ -6,12 +9,16 @@
  function eliminarSession($data){
      return "ES Contenido:" . $data; 
  }
- 
+ if(!isset($_SESSION["click"])){
+     $_SESSION["click"]=0;
+ }
  if(isset($_POST["btnAdd"])){
     $contenidoSesion=agregarAession($_POST["txtData"]);
+     $_SESSION["click"] ++;
  }
  if(isset($_POST["btnSubs"])){
     $contenidoSesion= eliminarSession($_POST["txtData"]);
+     $_SESSION["click"] ++;
  }
 ?>
 <!DOCTYPE html>
